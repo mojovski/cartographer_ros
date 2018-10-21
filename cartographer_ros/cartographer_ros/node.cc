@@ -731,8 +731,14 @@ void Node::HandleNavSatFixMessage(const int trajectory_id,
 void Node::HandleLandmarkMessage(
     const int trajectory_id, const std::string& sensor_id,
     const cartographer_ros_msgs::LandmarkList::ConstPtr& msg) {
+  //ROS_INFO_STREAM("Handling LandmarkMessage, sensor_id: " << sensor_id);
+  LOG(INFO) << "Handling LandmarkMessage, sensor_id: " << sensor_id;
+
   absl::MutexLock lock(&mutex_);
+  LOG(INFO) << "HandleLandmarkMessage: Locking mutex Success";
   if (!sensor_samplers_.at(trajectory_id).landmark_sampler.Pulse()) {
+    //ROS_ERROR("sensor_samplers_.at(trajectory_id).landmark_sampler.Pulse() returnes false. Why?")
+    LOG(ERROR) <<"sensor_samplers_.at(trajectory_id).landmark_sampler.Pulse() returnes false. Why?";
     return;
   }
   map_builder_bridge_.sensor_bridge(trajectory_id)

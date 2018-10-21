@@ -100,6 +100,7 @@ void SensorBridge::HandleNavSatFixMessage(
 void SensorBridge::HandleLandmarkMessage(
     const std::string& sensor_id,
     const cartographer_ros_msgs::LandmarkList::ConstPtr& msg) {
+  LOG(INFO) << "Handling Landmark";
   trajectory_builder_->AddSensorData(sensor_id, ToLandmarkData(*msg));
 }
 
