@@ -738,7 +738,7 @@ void Node::HandleLandmarkMessage(
   //LOG(DEBUG) << "HandleLandmarkMessage: Locking mutex Success";
   if (!sensor_samplers_.at(trajectory_id).landmark_sampler.Pulse()) {
     //ROS_ERROR("sensor_samplers_.at(trajectory_id).landmark_sampler.Pulse() returnes false. Why?")
-    LOG(ERROR) <<"sensor_samplers_.at(trajectory_id).landmark_sampler.Pulse() returnes false. Why?";
+    //LOG(ERROR) <<"sensor_samplers_.at(trajectory_id).landmark_sampler.Pulse() returnes false. Why? Because sensor sampling rate is <1.0";
     return;
   }
   map_builder_bridge_.sensor_bridge(trajectory_id)
